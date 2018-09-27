@@ -8,9 +8,12 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,43 +22,117 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="4dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView7"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/object_card_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ДОМ У ДОРОГИ"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/object_status_icon_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_ok" />
+
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/object_street_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Измайловский проспект 75А"
+                android:textSize="10sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/object_active_controllers_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="Активных контроллеров"
+                android:textSize="8sp" />
 
-            <TextView
-                android:id="@+id/textView4"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/textView3"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView2"
+                <TextView
+                    android:id="@+id/object_month_sum_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="За месяц" />
+
+                <TextView
+                    android:id="@+id/object_month_sum_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="@string/currency" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/object_prev_month_sum_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:text="За прошлый месяц" />
+
+                <TextView
+                    android:id="@+id/object_prev_month_sum_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="@string/currency" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/object_year_avg_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Среднее за год" />
+
+                <TextView
+                    android:id="@+id/object_year_avg_data"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center"
+                    android:layout_weight="1"
+                    android:gravity="right|center"
+                    android:text="@string/currency" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

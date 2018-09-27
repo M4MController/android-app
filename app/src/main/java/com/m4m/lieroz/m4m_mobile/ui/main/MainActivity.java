@@ -48,8 +48,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mRecyclerView = findViewById(R.id.object_recycler_view);
-
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
         mPresenter.onAttach(this);

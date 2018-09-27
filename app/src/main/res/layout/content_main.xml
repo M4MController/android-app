@@ -17,6 +17,7 @@
         android:clickable="true"
         android:focusable="true"
         android:visibility="visible"
+        app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +40,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_weight="1"
-                    android:gravity="left|center_vertical|center_horizontal"
-                    android:text="Расходы на 23.09.18" />
+                    android:gravity="center_vertical|center_horizontal|start"
+                    android:text="@string/expenses_on" />
 
                 <TextView
                     android:id="@+id/detailed_text_view"
@@ -48,8 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_weight="1"
-                    android:gravity="right|center_vertical|center_horizontal"
-                    android:text="Подробнее" />
+                    android:gravity="center_vertical|center_horizontal|end"
+                    android:text="@string/details" />
             </LinearLayout>
 
             <TextView
@@ -57,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="1234 руб."
+                android:text="@string/currency"
                 android:textSize="24sp" />
 
             <Button
@@ -67,7 +68,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_vertical|center_horizontal"
                 android:gravity="center"
-                android:text="ОПЛАТИТЬ"
+                android:text="@string/title_pay"
                 android:visibility="visible" />
 
         </LinearLayout>
