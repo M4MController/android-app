@@ -27,240 +27,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/object_card_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|start"
-                    android:text="ДОМ У ДОРОГИ"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:id="@+id/object_status_icon_view"
+                    android:id="@+id/object_expenses_on_view"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="top|end"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:layout_weight="1"
-                    android:contentDescription="TODO"
-                    app:srcCompat="@drawable/ic_ok" />
+                    android:gravity="center_vertical|center_horizontal|start"
+                    android:text="@string/expenses_on"
+                    android:textColor="@android:color/black" />
 
+                <TextView
+                    android:id="@+id/detailed_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal|end"
+                    android:text="@string/details"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/object_card_street"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical|start"
-                android:text="Измайловский Проспект 75А"
-                android:textSize="10sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <LinearLayout
+                android:id="@+id/main_sum_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="За месяц" />
-
-                        <TextView
-                            android:id="@+id/object_month_sum"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/currency" />
-
-                        <TextView
-                            android:id="@+id/object_month_prediction"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorAccent" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:gravity="start"
-                            android:text="За прошлый месяц" />
-
-                        <TextView
-                            android:id="@+id/object_prev_month_sum"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/currency" />
-
-                        <TextView
-                            android:id="@+id/object_prev_month_prediction"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorAccent" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="start"
-                            android:text="Среднее за год" />
-
-                        <TextView
-                            android:id="@+id/object_year_avg_sum"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/currency" />
-
-                        <TextView
-                            android:id="@+id/object_year_avg_prediction"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:orientation="horizontal">
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorPrimary" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorAccent" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:gravity="center_vertical|center_horizontal"
+                android:text="@string/currency"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
             <Button
-                android:id="@+id/object_pay_button"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="200dp"
+                android:id="@+id/main_pay_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="300dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|center_vertical|center_horizontal"
                 android:gravity="center"
@@ -268,6 +76,7 @@
                 android:visibility="visible" />
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView

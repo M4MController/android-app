@@ -49,6 +49,8 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @Override
     protected void setUp() {
         mPresenter.onAttach(this);
+        mToolbar.setTitle("Дом у дороги");
+        mToolbar.setSubtitle("Измаловский проспект 75А");
         setSupportActionBar(mToolbar);
 
         if (getSupportActionBar() != null) {

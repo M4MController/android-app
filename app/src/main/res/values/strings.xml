@@ -11,6 +11,6 @@
     <string name="title_pay">ОПЛАТИТЬ</string>
     <string name="currency">1234 ₽</string>
     <string name="prediction">(прогноз 1500 ₽)</string>
-    <string name="details"><u>Подробнее</u></string>
+    <string name="details">Подробнее</string>
     <string name="expenses_on">Расходы на: 23.09.18</string>
 </resources>
