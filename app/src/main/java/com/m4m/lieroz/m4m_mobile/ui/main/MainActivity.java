@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
 
-    @BindView(R.id.object_recycler_view)
+    @BindView(R.id.main_recycler_view)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.drawer_layout)
@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.main_toolbar)
     Toolbar mToolbar;
 
     @Override

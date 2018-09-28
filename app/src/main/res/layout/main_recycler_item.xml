@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/sensor_card"
+        android:id="@+id/object_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -23,39 +23,61 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/sensor_title"
+                    android:id="@+id/object_card_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical|start"
-                    android:text="ВОДА"
+                    android:text="ДОМ У ДОРОГИ"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <ImageView
-                    android:id="@+id/sensor_status"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/object_status"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="top|end"
-                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical|center|clip_vertical"
+                    android:layout_weight="3"
                     android:contentDescription="TODO"
                     app:srcCompat="@drawable/ic_ok" />
 
+                <Switch
+                    android:id="@+id/object_switch"
+                    android:checked="true"
+                    android:theme="@style/ToggleSwitchTheme"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal|center"
+                    android:layout_weight="3" />
+
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/object_card_street_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical|start"
+                android:text="Измайловский Проспект 75А"
+                android:textSize="10sp" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
+                android:layout_height="10dp"
+                android:layout_weight="1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,25 +97,30 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start"
-                            android:text="За месяц" />
+                            android:text="К оплате"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/sensor_month_sum"
-                            android:layout_width="match_parent"
+                            android:id="@+id/object_month_sum"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:gravity="end"
-                            android:text="@string/currency" />
+                            android:text="@string/currency"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/sensor_month_prediction"
-                            android:layout_width="match_parent"
+                            android:id="@+id/object_month_prediction"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_marginStart="2dp"
+                            android:layout_weight="0"
                             android:gravity="end"
                             android:text="@string/prediction"
                             android:textSize="10sp" />
@@ -140,24 +167,18 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:gravity="start"
-                            android:text="За прошлый месяц" />
+                            android:text="Сентябрь 2017"
+                            android:textColor="@android:color/black" />
 
                         <TextView
-                            android:id="@+id/sensor_prev_month_sum"
+                            android:id="@+id/object_prev_month_sum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:gravity="end"
-                            android:text="@string/currency" />
+                            android:text="@string/currency"
+                            android:textColor="@android:color/black" />
 
-                        <TextView
-                            android:id="@+id/sensor_prev_month_prediction"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -176,8 +197,8 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorAccent" />
+                            android:layout_weight="4"
+                            android:background="@android:color/darker_gray" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -199,24 +220,17 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start"
-                            android:text="Среднее за год" />
+                            android:text="Среднее за 2017"
+                            android:textColor="@android:color/black" />
 
                         <TextView
-                            android:id="@+id/sensor_year_avg_sum"
+                            android:id="@+id/object_year_avg_sum"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:gravity="end"
-                            android:text="@string/currency" />
-
-                        <TextView
-                            android:id="@+id/sensor_year_avg_prediction"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
+                            android:text="@string/currency"
+                            android:textColor="@android:color/black" />
 
                     </LinearLayout>
 
@@ -236,8 +250,8 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:layout_weight="1"
-                            android:background="@color/colorAccent" />
+                            android:layout_weight="2"
+                            android:background="@android:color/darker_gray" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -245,5 +259,6 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>
