@@ -2,8 +2,6 @@ package com.m4m.lieroz.m4m_mobile.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,9 +35,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
-    @BindView(R.id.fab)
-    FloatingActionButton mFab;
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
@@ -50,11 +45,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
-        mPresenter.onAttach(this);
         setUp();
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new MainAdapter());
     }
 
     @Override
@@ -72,6 +63,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     protected void setUp() {
+        mPresenter.onAttach(this);
+
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -94,13 +87,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         toggle.syncState();
         setupNavMenu();
 
-        mFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(new MainAdapter());
     }
 
     @Override
