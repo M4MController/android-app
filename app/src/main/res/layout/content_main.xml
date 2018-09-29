@@ -50,10 +50,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/dotted_line"
+                    android:layout_weight="1"
                     android:gravity="center_vertical|center_horizontal|end"
-                    android:text="@string/details"
+                    android:text="@string/history"
                     android:textStyle="italic" />
             </LinearLayout>
 
