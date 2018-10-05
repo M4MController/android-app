@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.m4m.lieroz.m4m_mobile.MvpApp;
+import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.di.ApplicationContext;
 import com.m4m.lieroz.m4m_mobile.di.module.ApplicationModule;
 
@@ -21,4 +22,6 @@ public interface ApplicationComponent {
     Context context();
 
     Application application();
+
+    DataManager getDataManager();
 }

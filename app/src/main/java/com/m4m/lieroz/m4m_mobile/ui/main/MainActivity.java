@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.m4m.lieroz.m4m_mobile.R;
+import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,6 +29,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
+
+    @Inject
+    MainAdapter mAdapter;
 
     @BindView(R.id.main_recycler_view)
     RecyclerView mRecyclerView;
@@ -45,7 +52,9 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
+
         setUp();
+        mPresenter.useDataManager();
     }
 
     @Override
@@ -88,7 +97,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         setupNavMenu();
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(new MainAdapter());
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -125,5 +134,11 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                         }
                     }
                 });
+    }
+
+    @Override
+    public void update(List<UserRelationsResponse.Object> objects) {
+        Log.d("TEST", objects.get(0).getName());
+        mAdapter.setUserObjectsResponseList(objects);
     }
 }

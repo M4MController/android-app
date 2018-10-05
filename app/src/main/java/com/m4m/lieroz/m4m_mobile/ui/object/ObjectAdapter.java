@@ -8,10 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
+import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +26,9 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @BindView(R.id.sensor_card)
         CardView mCardView;
+
+        @BindView(R.id.sensor_card_title)
+        TextView mCardTitle;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -41,6 +48,17 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
+    private List<UserRelationsResponse.Sensor> mUserSensorsResponseList;
+
+    public ObjectAdapter(List<UserRelationsResponse.Sensor> userSensorsResponseList) {
+        mUserSensorsResponseList = userSensorsResponseList;
+    }
+
+    public void setUserSensorsResponseList(List<UserRelationsResponse.Sensor> userSensorsResponseList) {
+        this.mUserSensorsResponseList = userSensorsResponseList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -49,11 +67,13 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        ViewHolder viewHolder = (ViewHolder) holder;
+        viewHolder.mCardTitle.setText(mUserSensorsResponseList.get(position).getName());
         holder.onBind(position);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mUserSensorsResponseList.size();
     }
 }

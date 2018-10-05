@@ -3,20 +3,28 @@ package com.m4m.lieroz.m4m_mobile.di.module;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.di.ActivityContext;
 import com.m4m.lieroz.m4m_mobile.di.PerActivity;
+import com.m4m.lieroz.m4m_mobile.ui.main.MainAdapter;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.object.ObjectAdapter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorPresenter;
+import com.m4m.lieroz.m4m_mobile.utils.rx.AppSchedulerProvider;
+import com.m4m.lieroz.m4m_mobile.utils.rx.SchedulerProvider;
+
+import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 @Module
 public class ActivityModule {
@@ -39,6 +47,17 @@ public class ActivityModule {
     }
 
     @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
+    }
+
+    @Provides
+    SchedulerProvider provideSchedulerProvider() {
+        return new AppSchedulerProvider();
+    }
+
+
+    @Provides
     @PerActivity
     MainMvpPresenter<MainMvpView> provideMainPresenter(MainPresenter<MainMvpView> presenter) {
         return presenter;
@@ -52,7 +71,17 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
-    SensorMvpPresenter<SensorMvpView> provideSesnorPresenter(SensorPresenter<SensorMvpView> presenter) {
+    SensorMvpPresenter<SensorMvpView> provideSensorPresenter(SensorPresenter<SensorMvpView> presenter) {
         return presenter;
+    }
+
+    @Provides
+    MainAdapter provideMainAdapter() {
+        return new MainAdapter(new ArrayList<UserRelationsResponse.Object>());
+    }
+
+    @Provides
+    ObjectAdapter provideObjectAdapter() {
+        return new ObjectAdapter(new ArrayList<UserRelationsResponse.Sensor>());
     }
 }

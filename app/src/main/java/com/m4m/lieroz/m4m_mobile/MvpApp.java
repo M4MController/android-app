@@ -2,11 +2,17 @@ package com.m4m.lieroz.m4m_mobile;
 
 import android.app.Application;
 
+import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.di.component.ApplicationComponent;
 import com.m4m.lieroz.m4m_mobile.di.component.DaggerApplicationComponent;
 import com.m4m.lieroz.m4m_mobile.di.module.ApplicationModule;
 
+import javax.inject.Inject;
+
 public class MvpApp extends Application {
+
+    @Inject
+    DataManager mDataManager;
 
     private ApplicationComponent mApplicationComponent;
 
