@@ -1,5 +1,7 @@
 package com.m4m.lieroz.m4m_mobile.ui.object;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
+import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +30,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
             mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Context context = itemView.getContext();
+                    context.startActivity(new Intent(context, SensorActivity.class));
                 }
             });
         }

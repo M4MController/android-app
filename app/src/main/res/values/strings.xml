@@ -9,6 +9,7 @@
     <string name="action_notifications">Notifications</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_object">ObjectActivity</string>
+    <string name="title_activity_sensor">SensorActivity</string>
     <string name="title_pay">ОПЛАТИТЬ</string>
     <string name="currency">1234 ₽</string>
     <string name="meters">450 м³</string>

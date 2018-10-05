@@ -11,6 +11,9 @@ import com.m4m.lieroz.m4m_mobile.ui.main.MainPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpView;
+import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -44,6 +47,12 @@ public class ActivityModule {
     @Provides
     @PerActivity
     ObjectMvpPresenter<ObjectMvpView> provideObjectPresenter(ObjectPresenter<ObjectMvpView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    SensorMvpPresenter<SensorMvpView> provideSesnorPresenter(SensorPresenter<SensorMvpView> presenter) {
         return presenter;
     }
 }

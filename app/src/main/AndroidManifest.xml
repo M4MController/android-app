@@ -34,6 +34,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".ui.sensor.SensorActivity"
+            android:label="@string/title_activity_sensor"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.object.ObjectActivity" />
+        </activity>
     </application>
 
 </manifest>
