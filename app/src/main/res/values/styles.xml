@@ -7,7 +7,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="cardViewStyle">@style/CardView</item>
-        <item name="android:actionButtonStyle">@style/MyActionButtonStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -24,12 +23,7 @@
     </style>
 
     <style name="ToolbarSubtitleAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
-        <item name="android:textSize">10sp</item>
-    </style>
-
-    <style name="MyActionButtonStyle" parent="Base.Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:minWidth">20dip</item>
-        <item name="android:padding">5dip</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

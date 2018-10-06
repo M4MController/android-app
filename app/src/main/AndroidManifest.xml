@@ -15,7 +15,7 @@
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/title_activity"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
@@ -27,7 +27,7 @@
 
         <activity
             android:name=".ui.object.ObjectActivity"
-            android:label="@string/title_activity_object"
+            android:label="@string/title_activity"
             android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -39,8 +39,8 @@
 
         <activity
             android:name=".ui.sensor.SensorActivity"
-            android:label="@string/title_activity_sensor"
-            android:parentActivityName=".ui.main.MainActivity"
+            android:label="@string/title_activity"
+            android:parentActivityName=".ui.object.ObjectActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <!-- Parent activity meta-data to support 4.0 and lower -->
 

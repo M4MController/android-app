@@ -29,14 +29,11 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.object_card)
         CardView mCardView;
 
-        @BindView(R.id.object_card_title)
+        @BindView(R.id.object_card_title_view)
         TextView mCardTitle;
 
         @BindView(R.id.object_card_street_view)
         TextView mCardStreet;
-
-        @BindView(R.id.object_status)
-        ImageView mStatusIcon;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -46,7 +43,10 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Context context = itemView.getContext();
-                    context.startActivity(new Intent(context, ObjectActivity.class));
+                    Intent intent = new Intent(context, ObjectActivity.class);
+                    intent.putExtra("title", mCardTitle.getText());
+                    intent.putExtra("street", mCardStreet.getText());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -76,21 +76,10 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        int icon = position % 3;
-        switch (icon) {
-            case 0:
-                viewHolder.mStatusIcon.setImageResource(R.drawable.ic_ok);
-                break;
-            case 1:
-                viewHolder.mStatusIcon.setImageResource(R.drawable.ic_warning);
-                break;
-            case 2:
-                viewHolder.mStatusIcon.setImageResource(R.drawable.ic_error);
-                break;
-        }
+        UserRelationsResponse.Object object = mUserObjectsResponseList.get(position);
 
-        viewHolder.mCardTitle.setText(mUserObjectsResponseList.get(position).getName());
-        viewHolder.mCardStreet.setText(mUserObjectsResponseList.get(position).getAddress());
+        viewHolder.mCardTitle.setText(object.getName());
+        viewHolder.mCardStreet.setText(object.getAddress());
         holder.onBind(position);
     }
 

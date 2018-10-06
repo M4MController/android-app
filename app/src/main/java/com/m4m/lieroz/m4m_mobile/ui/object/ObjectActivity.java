@@ -1,5 +1,6 @@
 package com.m4m.lieroz.m4m_mobile.ui.object;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,8 +59,10 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @Override
     protected void setUp() {
         mPresenter.onAttach(this);
-        mToolbar.setTitle("Дом у дороги");
-        mToolbar.setSubtitle("Измаловский проспект 75А");
+
+        Intent intent = getIntent();
+        mToolbar.setTitle(intent.getStringExtra("title"));
+        mToolbar.setSubtitle(intent.getStringExtra("street"));
         setSupportActionBar(mToolbar);
 
         if (getSupportActionBar() != null) {

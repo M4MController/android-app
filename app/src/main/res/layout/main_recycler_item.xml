@@ -29,41 +29,16 @@
             android:layout_marginTop="4dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/object_card_title_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/object_card_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|start"
-                    android:text="ДОМ У ДОРОГИ"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp" />
-
-                <ImageView
-                    android:id="@+id/object_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|center|clip_vertical"
-                    android:layout_weight="3"
-                    android:contentDescription="TODO"
-                    app:srcCompat="@drawable/ic_ok" />
-
-                <Switch
-                    android:id="@+id/object_switch"
-                    android:checked="true"
-                    android:theme="@style/ToggleSwitchTheme"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical|center_horizontal|center"
-                    android:layout_weight="3" />
-
-            </LinearLayout>
+                android:gravity="center_vertical|start"
+                android:text="ДОМ У ДОРОГИ"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/object_card_street_view"
@@ -72,7 +47,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical|start"
                 android:text="Измайловский Проспект 75А"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -100,30 +75,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="start"
+                            android:gravity="left|start"
                             android:text="К оплате"
                             android:textColor="@android:color/black"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/object_month_sum"
+                            android:id="@+id/object_current_month_payment_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="end"
+                            android:gravity="right|end"
                             android:text="@string/currency"
                             android:textColor="@android:color/black"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/object_month_prediction"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="2dp"
-                            android:layout_weight="0"
-                            android:gravity="end"
-                            android:text="@string/prediction"
-                            android:textSize="10sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -166,18 +134,20 @@
                             android:layout_weight="1"
                             android:clickable="true"
                             android:focusable="true"
-                            android:gravity="start"
+                            android:gravity="left|start"
                             android:text="Сентябрь 2017"
-                            android:textColor="@android:color/black" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/object_prev_month_sum"
+                            android:id="@+id/object_previous_month_payment_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="end"
+                            android:gravity="right|end"
                             android:text="@string/currency"
-                            android:textColor="@android:color/black" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 
@@ -221,16 +191,18 @@
                             android:layout_weight="1"
                             android:gravity="start"
                             android:text="Среднее за 2017"
-                            android:textColor="@android:color/black" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/object_year_avg_sum"
+                            android:id="@+id/object_year_average_payment_view"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="end"
+                            android:gravity="right|end"
                             android:text="@string/currency"
-                            android:textColor="@android:color/black" />
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
 
                     </LinearLayout>
 

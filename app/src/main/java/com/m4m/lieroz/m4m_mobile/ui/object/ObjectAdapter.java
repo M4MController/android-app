@@ -68,7 +68,9 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        viewHolder.mCardTitle.setText(mUserSensorsResponseList.get(position).getName());
+        UserRelationsResponse.Sensor sensor = mUserSensorsResponseList.get(position);
+
+        viewHolder.mCardTitle.setText(sensor.getName());
         holder.onBind(position);
     }
 

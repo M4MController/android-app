@@ -138,7 +138,6 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @Override
     public void update(List<UserRelationsResponse.Object> objects) {
-        Log.d("TEST", objects.get(0).getName());
         mAdapter.setUserObjectsResponseList(objects);
     }
 }
