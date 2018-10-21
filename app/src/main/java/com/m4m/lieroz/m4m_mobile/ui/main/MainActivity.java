@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -14,10 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.m4m.lieroz.m4m_mobile.R;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
+import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -33,7 +31,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @Inject
     MainAdapter mAdapter;
 
-    @BindView(R.id.main_recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.drawer_layout)
@@ -42,7 +40,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
-    @BindView(R.id.main_toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override
@@ -137,7 +135,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     }
 
     @Override
-    public void update(List<UserRelationsResponse.Object> objects) {
+    public void update(List<Object> objects) {
         mAdapter.setUserObjectsResponseList(objects);
     }
 }

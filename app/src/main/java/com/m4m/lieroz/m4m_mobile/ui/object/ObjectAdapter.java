@@ -11,11 +11,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
+import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorActivity;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +30,24 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @BindView(R.id.sensor_card_title)
         TextView mCardTitle;
+
+        @BindView(R.id.sensor_charge_view)
+        TextView mChargeView;
+
+        @BindView(R.id.sensor_overpayment_view)
+        TextView mOverpaymentView;
+
+        @BindView(R.id.sensor_total_view)
+        TextView mTotalView;
+
+        @BindView(R.id.sensor_current_month_view)
+        TextView mCurrentMonthView;
+
+        @BindView(R.id.sensor_prev_year_view)
+        TextView mPrevYearView;
+
+        @BindView(R.id.sensor_year_avg_view)
+        TextView mYearAvgView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -48,13 +67,13 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    private List<UserRelationsResponse.Sensor> mUserSensorsResponseList;
+    private List<Sensor> mUserSensorsResponseList;
 
-    public ObjectAdapter(List<UserRelationsResponse.Sensor> userSensorsResponseList) {
+    public ObjectAdapter(List<Sensor> userSensorsResponseList) {
         mUserSensorsResponseList = userSensorsResponseList;
     }
 
-    public void setUserSensorsResponseList(List<UserRelationsResponse.Sensor> userSensorsResponseList) {
+    public void setUserSensorsResponseList(List<Sensor> userSensorsResponseList) {
         this.mUserSensorsResponseList = userSensorsResponseList;
         notifyDataSetChanged();
     }
@@ -68,9 +87,15 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        UserRelationsResponse.Sensor sensor = mUserSensorsResponseList.get(position);
+        Sensor sensor = mUserSensorsResponseList.get(position);
 
         viewHolder.mCardTitle.setText(sensor.getName());
+        viewHolder.mChargeView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getCharge()));
+        viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getOverpayment()));
+        viewHolder.mTotalView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getForPayment()));
+        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getMonth()));
+        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevMonth()));
+        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevYear()));
         holder.onBind(position);
     }
 

@@ -3,6 +3,8 @@ package com.m4m.lieroz.m4m_mobile.di.module;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
+import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.di.ActivityContext;
 import com.m4m.lieroz.m4m_mobile.di.PerActivity;
@@ -77,11 +79,11 @@ public class ActivityModule {
 
     @Provides
     MainAdapter provideMainAdapter() {
-        return new MainAdapter(new ArrayList<UserRelationsResponse.Object>());
+        return new MainAdapter(new ArrayList<Object>());
     }
 
     @Provides
     ObjectAdapter provideObjectAdapter() {
-        return new ObjectAdapter(new ArrayList<UserRelationsResponse.Sensor>());
+        return new ObjectAdapter(new ArrayList<Sensor>());
     }
 }

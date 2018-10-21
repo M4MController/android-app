@@ -8,10 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.m4m.lieroz.m4m_mobile.R;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
+import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,10 +26,10 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @Inject
     ObjectAdapter mAdapter;
 
-    @BindView(R.id.object_recycler_view)
+    @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    @BindView(R.id.object_toolbar)
+    @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override
@@ -75,7 +74,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     }
 
     @Override
-    public void update(List<UserRelationsResponse.Sensor> sensors) {
+    public void update(List<Sensor> sensors) {
         mAdapter.setUserSensorsResponseList(sensors);
     }
 }

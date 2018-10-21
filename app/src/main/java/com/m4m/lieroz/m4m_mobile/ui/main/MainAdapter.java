@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
+import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +35,16 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         TextView mCardTitle;
 
         @BindView(R.id.object_card_street_view)
-        TextView mCardStreet;
+        TextView mStreetTitle;
+
+        @BindView(R.id.object_current_month_payment_view)
+        TextView mCurrentMonth;
+
+        @BindView(R.id.object_previous_month_payment_view)
+        TextView mPrevMonth;
+
+        @BindView(R.id.object_year_average_payment_view)
+        TextView mYearAvg;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -45,7 +56,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     Context context = itemView.getContext();
                     Intent intent = new Intent(context, ObjectActivity.class);
                     intent.putExtra("title", mCardTitle.getText());
-                    intent.putExtra("street", mCardStreet.getText());
+                    intent.putExtra("street", mStreetTitle.getText());
                     context.startActivity(intent);
                 }
             });
@@ -56,13 +67,13 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    private List<UserRelationsResponse.Object> mUserObjectsResponseList;
+    private List<Object> mUserObjectsResponseList;
 
-    public MainAdapter(ArrayList<UserRelationsResponse.Object> userObjectsResponseList) {
+    public MainAdapter(ArrayList<Object> userObjectsResponseList) {
         mUserObjectsResponseList = userObjectsResponseList;
     }
 
-    public void setUserObjectsResponseList(List<UserRelationsResponse.Object> userObjectsResponseList) {
+    public void setUserObjectsResponseList(List<Object> userObjectsResponseList) {
         mUserObjectsResponseList = userObjectsResponseList;
         notifyDataSetChanged();
     }
@@ -76,10 +87,10 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
-        UserRelationsResponse.Object object = mUserObjectsResponseList.get(position);
+        Object object = mUserObjectsResponseList.get(position);
 
         viewHolder.mCardTitle.setText(object.getName());
-        viewHolder.mCardStreet.setText(object.getAddress());
+        viewHolder.mStreetTitle.setText(object.getAddress());
         holder.onBind(position);
     }
 
