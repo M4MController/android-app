@@ -108,6 +108,7 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
 
         Intent intent = getIntent();
         mToolbar.setTitle(intent.getStringExtra("title"));
+        mToolbar.setSubtitle(intent.getStringExtra("address"));
         Sensor.Finance.ServiceCompany company = (new Gson()).fromJson(intent.getStringExtra("company"),
                 Sensor.Finance.ServiceCompany.class);
         setSupportActionBar(mToolbar);

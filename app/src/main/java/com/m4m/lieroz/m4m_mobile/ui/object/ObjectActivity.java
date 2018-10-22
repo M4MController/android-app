@@ -32,6 +32,8 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+    private String address;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,8 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
 
         Intent intent = getIntent();
         mToolbar.setTitle(intent.getStringExtra("title"));
-        mToolbar.setSubtitle(intent.getStringExtra("street"));
+        address = intent.getStringExtra("address");
+        mToolbar.setSubtitle(address);
         setSupportActionBar(mToolbar);
 
         if (getSupportActionBar() != null) {
@@ -69,6 +72,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        mAdapter.setAddress(address);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
     }

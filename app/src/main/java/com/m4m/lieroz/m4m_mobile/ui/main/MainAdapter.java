@@ -31,7 +31,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.object_card_title_view)
         TextView mCardTitleView;
 
-        @BindView(R.id.object_card_street_view)
+        @BindView(R.id.object_card_address_view)
         TextView mStreetTitleView;
 
         @BindView(R.id.object_current_month_view)
@@ -53,7 +53,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     Context context = itemView.getContext();
                     Intent intent = new Intent(context, ObjectActivity.class);
                     intent.putExtra("title", mCardTitleView.getText());
-                    intent.putExtra("street", mStreetTitleView.getText());
+                    intent.putExtra("address", mStreetTitleView.getText());
                     context.startActivity(intent);
                 }
             });
