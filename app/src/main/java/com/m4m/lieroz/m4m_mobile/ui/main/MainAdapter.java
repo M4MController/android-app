@@ -8,18 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,19 +29,19 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         CardView mCardView;
 
         @BindView(R.id.object_card_title_view)
-        TextView mCardTitle;
+        TextView mCardTitleView;
 
         @BindView(R.id.object_card_street_view)
-        TextView mStreetTitle;
+        TextView mStreetTitleView;
 
-        @BindView(R.id.object_current_month_payment_view)
-        TextView mCurrentMonth;
+        @BindView(R.id.object_current_month_view)
+        TextView mCurrentMonthView;
 
-        @BindView(R.id.object_previous_month_payment_view)
-        TextView mPrevMonth;
+        @BindView(R.id.object_prev_year_view)
+        TextView mPrevYearView;
 
-        @BindView(R.id.object_year_average_payment_view)
-        TextView mYearAvg;
+        @BindView(R.id.object_year_avg_view)
+        TextView mYearAvgView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -55,8 +52,8 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 public void onClick(View v) {
                     Context context = itemView.getContext();
                     Intent intent = new Intent(context, ObjectActivity.class);
-                    intent.putExtra("title", mCardTitle.getText());
-                    intent.putExtra("street", mStreetTitle.getText());
+                    intent.putExtra("title", mCardTitleView.getText());
+                    intent.putExtra("street", mStreetTitleView.getText());
                     context.startActivity(intent);
                 }
             });
@@ -89,8 +86,8 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         ViewHolder viewHolder = (ViewHolder) holder;
         Object object = mUserObjectsResponseList.get(position);
 
-        viewHolder.mCardTitle.setText(object.getName());
-        viewHolder.mStreetTitle.setText(object.getAddress());
+        viewHolder.mCardTitleView.setText(object.getName());
+        viewHolder.mStreetTitleView.setText(object.getAddress());
         holder.onBind(position);
     }
 

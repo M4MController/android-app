@@ -1,5 +1,8 @@
 package com.m4m.lieroz.m4m_mobile.ui.base;
 
+import android.util.Log;
+
+import com.androidnetworking.error.ANError;
 import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.utils.rx.SchedulerProvider;
 
@@ -53,5 +56,10 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     public V getMvpView() {
         return mMvpView;
+    }
+
+    @Override
+    public void handleApiError(ANError error) {
+        Log.d("ERROR", "Something went wrong! Implement me plz!!!");
     }
 }

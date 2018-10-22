@@ -29,7 +29,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         CardView mCardView;
 
         @BindView(R.id.sensor_card_title)
-        TextView mCardTitle;
+        TextView mCardTitleView;
 
         @BindView(R.id.sensor_charge_view)
         TextView mChargeView;
@@ -89,7 +89,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         ViewHolder viewHolder = (ViewHolder) holder;
         Sensor sensor = mUserSensorsResponseList.get(position);
 
-        viewHolder.mCardTitle.setText(sensor.getName());
+        viewHolder.mCardTitleView.setText(sensor.getName());
         viewHolder.mChargeView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getCharge()));
         viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getOverpayment()));
         viewHolder.mTotalView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getForPayment()));

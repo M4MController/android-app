@@ -2,6 +2,7 @@ package com.m4m.lieroz.m4m_mobile.ui.object;
 
 import android.util.Log;
 
+import com.androidnetworking.error.ANError;
 import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BasePresenter;
@@ -35,7 +36,10 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("ERROR", "ERROR BLYAT!!!!");
+                        if (throwable instanceof ANError) {
+                            ANError anError = (ANError) throwable;
+                            handleApiError(anError);
+                        }
                     }
                 }));
     }

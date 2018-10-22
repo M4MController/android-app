@@ -8,11 +8,8 @@ import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BasePresenter;
 import com.m4m.lieroz.m4m_mobile.utils.rx.SchedulerProvider;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
@@ -39,7 +36,10 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("ERROR", "ERROR BLYAT!!!!");
+                        if (throwable instanceof ANError) {
+                            ANError anError = (ANError) throwable;
+                            handleApiError(anError);
+                        }
                     }
                 }));
     }
