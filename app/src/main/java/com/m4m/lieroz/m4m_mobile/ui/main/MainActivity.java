@@ -50,8 +50,8 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
         getActivityComponent().inject(this);
         setUnBinder(ButterKnife.bind(this));
-
         setUp();
+
         mPresenter.useDataManager();
     }
 

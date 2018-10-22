@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseViewHolder;
@@ -49,6 +50,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.sensor_year_avg_view)
         TextView mYearAvgView;
 
+        Sensor.Finance.ServiceCompany company;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -57,7 +60,10 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Context context = itemView.getContext();
-                    context.startActivity(new Intent(context, SensorActivity.class));
+                    Intent intent = new Intent(context, SensorActivity.class);
+                    intent.putExtra("title", mCardTitleView.getText());
+                    intent.putExtra("company", (new Gson()).toJson(company));
+                    context.startActivity(intent);
                 }
             });
         }
@@ -96,6 +102,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getMonth()));
         viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevMonth()));
         viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevYear()));
+        viewHolder.company = sensor.getFinance().getServiceCompany();
         holder.onBind(position);
     }
 
