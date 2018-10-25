@@ -5,6 +5,34 @@ import com.google.gson.annotations.SerializedName;
 
 public class Sensor {
 
+    public class Payments {
+
+        @Expose
+        @SerializedName("charge")
+        private double charge;
+
+        @Expose
+//        @SerializedName("overpayment")
+        @SerializedName("overpaiment")
+        private double overpayment;
+
+        @Expose
+        @SerializedName("for_paiment")
+        private double forPayment;
+
+        public double getCharge() {
+            return charge;
+        }
+
+        public double getOverpayment() {
+            return overpayment;
+        }
+
+        public double getForPayment() {
+            return forPayment;
+        }
+    }
+
     public static class Stats {
 
         @Expose
@@ -56,50 +84,64 @@ public class Sensor {
         public static class ServiceCompany {
 
             @Expose
+            @SerializedName("address")
+            private String address;
+
+            @Expose
             @SerializedName("name")
             private String name;
 
             @Expose
-            @SerializedName("phone")
-            private String phone;
-
-            @Expose
-//                @SerializedName("address")
-            @SerializedName("addres")
-            private String address;
+            @SerializedName("bank_account_id")
+            private String bankAccountId;
 
             @Expose
             @SerializedName("id")
             private int id;
 
             @Expose
-            @SerializedName("bank_account_id")
-            private String bankAccountId;
+            @SerializedName("phone")
+            private String phone;
+
+            public String getAddress() {
+                return address;
+            }
 
             public String getName() {
                 return name;
             }
 
-            public String getPhone() {
-                return phone;
-            }
-
-            public String getAddress() {
-                return address;
+            public String getBankAccountId() {
+                return bankAccountId;
             }
 
             public int getId() {
                 return id;
             }
 
-            public String getBankAccountId() {
-                return bankAccountId;
+            public String getPhone() {
+                return phone;
             }
         }
 
-        @Expose
-        @SerializedName("service_company")
-        private ServiceCompany serviceCompany;
+        public static class Tariff {
+
+            @Expose
+            @SerializedName("day")
+            private double day;
+
+            @Expose
+            @SerializedName("night")
+            private double night;
+
+            public double getDay() {
+                return day;
+            }
+
+            public double getNight() {
+                return night;
+            }
+        }
 
         @Expose
 //            @SerializedName("payment_id")
@@ -107,99 +149,103 @@ public class Sensor {
         private String paymentId;
 
         @Expose
-        @SerializedName("tariff")
-        private int tariff;
+        @SerializedName("service_company")
+        private ServiceCompany serviceCompany;
 
-        public ServiceCompany getServiceCompany() {
-            return serviceCompany;
-        }
+//        @Expose
+//        @SerializedName("tariff")
+//        private Tariff tariff;
 
         public String getPaymentId() {
             return paymentId;
         }
 
-        public int getTariff() {
-            return tariff;
+        public ServiceCompany getServiceCompany() {
+            return serviceCompany;
         }
+
+//        public Tariff getTariff() {
+//            return tariff;
+//        }
     }
-
-    @Expose
-    @SerializedName("stats")
-    private Stats stats;
-
-    @Expose
-    @SerializedName("last_value")
-    private int lastValue;
-
-    @Expose
-    @SerializedName("payments")
-    private Payments payments;
-
-    @Expose
-    @SerializedName("controller_id")
-    private int controllerId;
-
-    @Expose
-    @SerializedName("id")
-    private int id;
-
-    @Expose
-    @SerializedName("finance")
-    private Finance finance;
-
-    @Expose
-    @SerializedName("characteristics")
-    private Characteristics characteristics;
 
     @Expose
     @SerializedName("name")
     private String name;
 
     @Expose
-    @SerializedName("activation_date")
-    private Long activationDate;
+    @SerializedName("payments")
+    private Payments payments;
+
+    @Expose
+    @SerializedName("stats")
+    private Stats stats;
+
+    @Expose
+    @SerializedName("id")
+    private int id;
+
+    @Expose
+    @SerializedName("controller_id")
+    private int controllerId;
 
     @Expose
     @SerializedName("deactivation_date")
     private Long deactivationDate;
 
-    public Stats getStats() {
-        return stats;
-    }
+    @Expose
+    @SerializedName("characteristics")
+    private Characteristics characteristics;
 
-    public int getLastValue() {
-        return lastValue;
+    @Expose
+    @SerializedName("finance")
+    private Finance finance;
+
+    @Expose
+    @SerializedName("activation_date")
+    private Long activationDate;
+
+    @Expose
+    @SerializedName("last_value")
+    private Long lastValue;
+
+    public String getName() {
+        return name;
     }
 
     public Payments getPayments() {
         return payments;
     }
 
-    public int getControllerId() {
-        return controllerId;
+    public Stats getStats() {
+        return stats;
     }
 
     public int getId() {
         return id;
     }
 
-    public Finance getFinance() {
-        return finance;
+    public int getControllerId() {
+        return controllerId;
+    }
+
+    public Long getDeactivationDate() {
+        return deactivationDate;
     }
 
     public Characteristics getCharacteristics() {
         return characteristics;
     }
 
-    public String getName() {
-        return name;
+    public Finance getFinance() {
+        return finance;
     }
 
     public Long getActivationDate() {
         return activationDate;
     }
 
-    public Long getDeactivationDate() {
-        return deactivationDate;
+    public Long getLastValue() {
+        return lastValue;
     }
 }

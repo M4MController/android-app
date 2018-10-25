@@ -5,44 +5,71 @@ import com.google.gson.annotations.SerializedName;
 
 public class Object {
 
+    public static class Payments {
+
+        @Expose
+        @SerializedName("current_month")
+        private double currentMonth;
+
+        @Expose
+        @SerializedName("prev_year")
+        private double prevYear;
+
+        @Expose
+        @SerializedName("year_avg")
+        private double yearAvg;
+
+        public double getCurrentMonth() {
+            return currentMonth;
+        }
+
+        public double getPrevYear() {
+            return prevYear;
+        }
+
+        public double getYearAvg() {
+            return yearAvg;
+        }
+    }
+
+    @Expose
+//        @SerializedName("address")
+    @SerializedName("adress")
+    private String address;
+
     @Expose
     @SerializedName("name")
     private String name;
+
+    @Expose
+    @SerializedName("user_id")
+    private int userId;
 
     @Expose
     @SerializedName("payments")
     private Payments payments;
 
     @Expose
-    @SerializedName("user_id")
-    private int user_id;
-
-    @Expose
     @SerializedName("id")
     private int id;
 
-    @Expose
-//        @SerializedName("address")
-    @SerializedName("adres")
-    private String address;
+    public String getAddress() {
+        return address;
+    }
 
     public String getName() {
         return name;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public Payments getPayments() {
         return payments;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public String getAddress() {
-        return address;
     }
 }
