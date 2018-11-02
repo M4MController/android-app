@@ -33,13 +33,12 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/sum_view"
+                android:id="@+id/expenses_sum_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:paddingLeft="40dp"
-                android:text="@string/currency"
                 android:textColor="@android:color/black"
                 android:textSize="22sp"
                 android:textStyle="bold" />

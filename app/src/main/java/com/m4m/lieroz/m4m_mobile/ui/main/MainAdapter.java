@@ -17,6 +17,7 @@ import com.m4m.lieroz.m4m_mobile.ui.object.ObjectActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -84,10 +85,14 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
+        Context context = holder.itemView.getContext();
         Object object = mUserObjectsResponseList.get(position);
 
         viewHolder.mCardTitleView.setText(object.getName());
         viewHolder.mStreetTitleView.setText(object.getAddress());
+        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH, "%.2f %s", object.getPayments().getCurrentMonth(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH, "%.2f %s", object.getPayments().getPrevYear(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH, "%.2f %s", object.getPayments().getYearAvg(), context.getResources().getString(R.string.currency_format)));
         holder.onBind(position);
     }
 

@@ -12,13 +12,11 @@ public class Controller {
         private double charge;
 
         @Expose
-//        @SerializedName("overpayment")
-        @SerializedName("overpaiment")
+        @SerializedName("overpayment")
         private double overpayment;
 
         @Expose
-//        @SerializedName("for_payment")
-        @SerializedName("for_paiment")
+        @SerializedName("for_payment")
         private double forPayment;
 
         public double getCharge() {

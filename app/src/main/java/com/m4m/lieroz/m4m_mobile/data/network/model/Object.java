@@ -33,8 +33,7 @@ public class Object {
     }
 
     @Expose
-//        @SerializedName("address")
-    @SerializedName("adress")
+    @SerializedName("address")
     private String address;
 
     @Expose

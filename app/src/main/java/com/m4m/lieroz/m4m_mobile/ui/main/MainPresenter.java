@@ -23,7 +23,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
     }
 
     @Override
-    public void useDataManager() {
+    public void getUserObjects() {
         getCompositeDisposable().add(getDataManager()
                 .getUserRelationsApiCall()
                 .subscribeOn(getSchedulerProvider().io())
@@ -38,7 +38,6 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                     public void accept(Throwable throwable) throws Exception {
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
-                            Log.d("ERROR", anError.getMessage());
                             handleApiError(anError);
                         }
                     }

@@ -88,7 +88,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right|end"
-                            android:text="@string/currency"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -146,7 +145,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right|end"
-                            android:text="@string/currency"
                             android:textColor="@android:color/black"
                             android:textSize="16sp" />
 
@@ -201,7 +199,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right|end"
-                            android:text="@string/currency"
                             android:textColor="@android:color/black"
                             android:textSize="16sp" />
 

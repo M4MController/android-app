@@ -50,7 +50,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.sensor_year_avg_view)
         TextView mYearAvgView;
 
-        Sensor.Finance.ServiceCompany company;
+        Sensor sensor;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -63,7 +63,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     Intent intent = new Intent(context, SensorActivity.class);
                     intent.putExtra("title", mCardTitleView.getText());
                     intent.putExtra("address", mAddress);
-                    intent.putExtra("company", (new Gson()).toJson(company));
+                    intent.putExtra("sensor", (new Gson()).toJson(sensor));
                     context.startActivity(intent);
                 }
             });
@@ -98,16 +98,17 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
         ViewHolder viewHolder = (ViewHolder) holder;
+        Context context = holder.itemView.getContext();
         Sensor sensor = mUserSensorsResponseList.get(position);
 
         viewHolder.mCardTitleView.setText(sensor.getName());
-        viewHolder.mChargeView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getCharge()));
-        viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getOverpayment()));
-        viewHolder.mTotalView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getPayments().getForPayment()));
-        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getMonth()));
-        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevMonth()));
-        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH ,"%.2f", sensor.getStats().getPrevYear()));
-        viewHolder.company = sensor.getFinance().getServiceCompany();
+        viewHolder.mChargeView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getCharge(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getOverpayment(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mTotalView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getForPayment(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getPrevMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getPrevYear(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.sensor = sensor;
         holder.onBind(position);
     }
 

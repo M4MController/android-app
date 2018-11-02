@@ -5,13 +5,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -29,10 +34,16 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.expenses_date_view)
+    TextView mExpensesDateView;
 
-    private String address;
+    @BindView(R.id.expenses_sum_view)
+    TextView mExpensesSumView;
+
+    @BindView(R.id.pay_button)
+    Button mPayButton;
+
+    private String mAddress;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +54,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
         setUnBinder(ButterKnife.bind(this));
         setUp();
 
-        mPresenter.useDataManager();
+        mPresenter.getUserSensors();
     }
 
     @Override
@@ -61,24 +72,29 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     protected void setUp() {
         mPresenter.onAttach(this);
 
+        DateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.ENGLISH);
+        mExpensesDateView.setText(String.format("%s: %s", getResources().getString(R.string.expenses_on), sdf.format(new Date())));
+
         Intent intent = getIntent();
         mToolbar.setTitle(intent.getStringExtra("title"));
-        address = intent.getStringExtra("address");
-        mToolbar.setSubtitle(address);
-        setSupportActionBar(mToolbar);
+        mAddress = intent.getStringExtra("address");
+        mToolbar.setSubtitle(mAddress);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-
-        mAdapter.setAddress(address);
+        mAdapter.setAddress(mAddress);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
+
+        super.setUp();
     }
 
     @Override
     public void update(List<Sensor> sensors) {
+        double total = 0;
+        for (Sensor o : sensors) {
+            total += o.getPayments().getCharge();
+        }
+
+        mExpensesSumView.setText(String.format(Locale.ENGLISH, "%.2f %s", total, getResources().getString(R.string.currency_format)));
         mAdapter.setUserSensorsResponseList(sensors);
     }
 }

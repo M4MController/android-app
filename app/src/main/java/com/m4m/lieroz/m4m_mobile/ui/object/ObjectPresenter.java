@@ -21,7 +21,7 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
     }
 
     @Override
-    public void useDataManager() {
+    public void getUserSensors() {
         getCompositeDisposable().add(getDataManager()
                 .getUserRelationsApiCall()
                 .subscribeOn(getSchedulerProvider().io())

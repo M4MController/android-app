@@ -12,12 +12,11 @@ public class Sensor {
         private double charge;
 
         @Expose
-//        @SerializedName("overpayment")
-        @SerializedName("overpaiment")
+        @SerializedName("overpayment")
         private double overpayment;
 
         @Expose
-        @SerializedName("for_paiment")
+        @SerializedName("for_payment")
         private double forPayment;
 
         public double getCharge() {
@@ -144,8 +143,7 @@ public class Sensor {
         }
 
         @Expose
-//            @SerializedName("payment_id")
-        @SerializedName("paiment_id")
+        @SerializedName("payment_id")
         private String paymentId;
 
         @Expose
@@ -207,7 +205,7 @@ public class Sensor {
 
     @Expose
     @SerializedName("last_value")
-    private Long lastValue;
+    private double lastValue;
 
     public String getName() {
         return name;
@@ -245,7 +243,7 @@ public class Sensor {
         return activationDate;
     }
 
-    public Long getLastValue() {
+    public double getLastValue() {
         return lastValue;
     }
 }

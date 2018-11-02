@@ -6,12 +6,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_notifications">Notifications</string>
-    <string name="title_activity">M4M</string>
+    <string name="app_title">M4M</string>
     <string name="title_pay">ОПЛАТИТЬ</string>
-    <string name="currency">1234 ₽</string>
-    <string name="meters">450 м³</string>
-    <string name="prediction">прогноз 1500 ₽</string>
-    <string name="meters_prediction">(прогноз 600 м³)</string>
-    <string name="history">История</string>
-    <string name="expenses_on">Расходы на 23.09.18</string>
+    <string name="expenses_on">Расходы на</string>
+    <string name="currency_format">₽</string>
 </resources>
