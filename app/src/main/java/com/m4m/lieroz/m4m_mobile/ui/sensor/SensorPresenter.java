@@ -22,6 +22,7 @@ public class SensorPresenter<V extends SensorMvpView> extends BasePresenter<V> i
 
     @Override
     public void getSensorData(int id, String from, String to, final boolean current) {
+        getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
                 .getSensorDataApiCall(id, from, to)
                 .subscribeOn(getSchedulerProvider().io())
@@ -29,11 +30,22 @@ public class SensorPresenter<V extends SensorMvpView> extends BasePresenter<V> i
                 .subscribe(new Consumer<SensorDataPeriodResponse>() {
                     @Override
                     public void accept(SensorDataPeriodResponse response) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
                         getMvpView().update(response.getData(), current);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
+
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
                             handleApiError(anError);

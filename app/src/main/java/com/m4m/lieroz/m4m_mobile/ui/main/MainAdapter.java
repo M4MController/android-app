@@ -52,7 +52,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Context context = itemView.getContext();
-                    Intent intent = new Intent(context, ObjectActivity.class);
+                    Intent intent = ObjectActivity.getStartIntent(context);
                     intent.putExtra("title", mCardTitleView.getText());
                     intent.putExtra("address", mStreetTitleView.getText());
                     context.startActivity(intent);

@@ -22,6 +22,7 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
 
     @Override
     public void getUserObjects() {
+        getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
                 .getUserRelationsApiCall()
                 .subscribeOn(getSchedulerProvider().io())
@@ -29,11 +30,22 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                 .subscribe(new Consumer<UserRelationsResponse>() {
                     @Override
                     public void accept(UserRelationsResponse response) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
                         getMvpView().update(response.getMessage().getObjects());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
+
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
                             handleApiError(anError);

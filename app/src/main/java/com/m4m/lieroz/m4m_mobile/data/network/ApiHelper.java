@@ -7,11 +7,9 @@ import io.reactivex.Single;
 
 public interface ApiHelper {
 
-    void setApiToken(String token);
-
     Single<String> doUserLoginApiCall(String email, String password);
 
-    Single<UserRelationsResponse> getUserRelationsApiCall();
+    Single<UserRelationsResponse> getUserRelationsApiCall(String token);
 
-    Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to);
+    Single<SensorDataPeriodResponse> getSensorDataApiCall(String token, int id, String from, String to);
 }

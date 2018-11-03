@@ -1,8 +1,10 @@
 package com.m4m.lieroz.m4m_mobile.ui.sensor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +17,7 @@ import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.data.network.model.SensorDataPeriodResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
+import com.m4m.lieroz.m4m_mobile.ui.base.DrawerAndToolbarActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,7 +31,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SensorActivity extends BaseActivity implements SensorMvpView {
+public class SensorActivity extends DrawerAndToolbarActivity implements SensorMvpView {
 
     @Inject
     SensorMvpPresenter<SensorMvpView> mPresenter;
@@ -61,6 +64,10 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
     private LineGraphSeries<DataPoint> mCurrentMonthSeries = new LineGraphSeries<>();
     private LineGraphSeries<DataPoint> mPrevYearSeries = new LineGraphSeries<>();
 
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, SensorActivity.class);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,16 +79,17 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
     }
 
     private void initGraph() {
-        mPresenter.getSensorData(mSensor.getId(), "2017-10-01T00:00:00", "2017-10-31T00:00:00", false);
+        mPresenter.getSensorData(mSensor.getId(), "2017-09-01T00:00:00", "2017-09-30T00:00:00", false);
 //        mPresenter.getSensorData(mSensor.getId(), "2018-10-01T00:00:00", "2018-10-31T00:00:00", true);
 
         Calendar calendar = Calendar.getInstance();
         int f = calendar.getActualMinimum(Calendar.DAY_OF_MONTH);
-//        int l = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        int l = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 //        Date d;
 
         calendar.set(Calendar.DAY_OF_MONTH, f);
         Date first = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_MONTH, l);
         Date last = calendar.getTime();
 
 //        for (int i = 0; i < l; ++i) {
@@ -97,8 +105,6 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
         graph.getGridLabelRenderer().setNumHorizontalLabels(4);
 
         graph.getViewport().setMinX(first.getTime());
-        calendar.add(Calendar.DATE, 30);
-        last = calendar.getTime();
         graph.getViewport().setMaxX(last.getTime());
         graph.getViewport().setXAxisBoundsManual(true);
 //

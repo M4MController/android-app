@@ -12,15 +12,9 @@ import io.reactivex.Single;
 @Singleton
 public class AppApiHelper implements ApiHelper {
 
-    private String mApiToken;
-
     @Inject
     public AppApiHelper() {
 
-    }
-
-    public void setApiToken(String token) {
-        mApiToken = token;
     }
 
     @Override
@@ -32,17 +26,17 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
-    public Single<UserRelationsResponse> getUserRelationsApiCall() {
+    public Single<UserRelationsResponse> getUserRelationsApiCall(String token) {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_USER_RELATIONS)
-                .addQueryParameter("token", mApiToken)
+                .addQueryParameter("token", token)
                 .build()
                 .getObjectSingle(UserRelationsResponse.class);
     }
 
     @Override
-    public Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to) {
+    public Single<SensorDataPeriodResponse> getSensorDataApiCall(String token, int id, String from, String to) {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_SENSOR_DATA_PERIOD)
-                .addQueryParameter("token", mApiToken)
+                .addQueryParameter("token", token)
                 .addPathParameter("id", Integer.toString(id))
                 .addQueryParameter("from", from)
                 .addQueryParameter("to", to)

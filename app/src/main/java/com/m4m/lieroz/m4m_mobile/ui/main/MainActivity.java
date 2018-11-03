@@ -1,5 +1,7 @@
 package com.m4m.lieroz.m4m_mobile.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +10,7 @@ import android.widget.TextView;
 
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
-import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
+import com.m4m.lieroz.m4m_mobile.ui.base.DrawerAndToolbarActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,7 +23,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity implements MainMvpView {
+public class MainActivity extends DrawerAndToolbarActivity implements MainMvpView {
 
     @Inject
     MainMvpPresenter<MainMvpView> mPresenter;
@@ -40,6 +42,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+
+    public static Intent getStartIntent(Context context) {
+        return new Intent(context, MainActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

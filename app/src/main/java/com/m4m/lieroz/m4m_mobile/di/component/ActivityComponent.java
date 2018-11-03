@@ -6,12 +6,15 @@ import com.m4m.lieroz.m4m_mobile.ui.auth.AuthActivity;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainActivity;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectActivity;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorActivity;
+import com.m4m.lieroz.m4m_mobile.ui.splash.SplashActivity;
 
 import dagger.Component;
 
 @PerActivity
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
+
+    void inject(SplashActivity activity);
 
     void inject(AuthActivity activity);
 

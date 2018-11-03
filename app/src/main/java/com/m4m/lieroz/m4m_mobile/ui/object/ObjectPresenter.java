@@ -22,6 +22,7 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
 
     @Override
     public void getUserSensors() {
+        getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
                 .getUserRelationsApiCall()
                 .subscribeOn(getSchedulerProvider().io())
@@ -29,11 +30,22 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
                 .subscribe(new Consumer<UserRelationsResponse>() {
                     @Override
                     public void accept(UserRelationsResponse response) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
                         getMvpView().update(response.getMessage().getSensors());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        if (!isViewAttached()) {
+                            return;
+                        }
+
+                        getMvpView().hideLoading();
+
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
                             handleApiError(anError);

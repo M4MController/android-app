@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.m4m.lieroz.m4m_mobile.data.network.model.Object;
 import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.di.ActivityContext;
 import com.m4m.lieroz.m4m_mobile.di.PerActivity;
 import com.m4m.lieroz.m4m_mobile.ui.auth.AuthMvpPresenter;
@@ -22,6 +21,9 @@ import com.m4m.lieroz.m4m_mobile.ui.object.ObjectPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.splash.SplashMvpPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.splash.SplashMvpView;
+import com.m4m.lieroz.m4m_mobile.ui.splash.SplashPresenter;
 import com.m4m.lieroz.m4m_mobile.utils.rx.AppSchedulerProvider;
 import com.m4m.lieroz.m4m_mobile.utils.rx.SchedulerProvider;
 
@@ -60,6 +62,13 @@ public class ActivityModule {
     SchedulerProvider provideSchedulerProvider() {
         return new AppSchedulerProvider();
     }
+
+    @Provides
+    @PerActivity
+    SplashMvpPresenter<SplashMvpView> provideSplashPresenter(SplashPresenter<SplashMvpView> presenter) {
+        return presenter;
+    }
+
 
     @Provides
     @PerActivity

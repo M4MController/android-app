@@ -27,34 +27,36 @@ public class AppDataManager implements DataManager {
         mApiHelper = apiHelper;
     }
 
-    @Override
-    public void setApiToken(String token) {
-        mApiHelper.setApiToken(token);
+    public int getCurrentUserLoggedInMode() {
+        return mPreferencesHelper.getCurrentUserLoggedInMode();
     }
 
-    @Override
+    public void setCurrentUserLoggedInMode(LoggedInMode mode) {
+        mPreferencesHelper.setCurrentUserLoggedInMode(mode);
+    }
+
     public String getAccessToken() {
         return mPreferencesHelper.getAccessToken();
     }
 
-    @Override
     public void setAccessToken(String accessToken) {
         mPreferencesHelper.setAccessToken(accessToken);
-        setApiToken(accessToken);
     }
 
-    @Override
     public Single<String> doUserLoginApiCall(String email, String password) {
         return mApiHelper.doUserLoginApiCall(email, password);
     }
 
-    @Override
     public Single<UserRelationsResponse> getUserRelationsApiCall() {
-        return mApiHelper.getUserRelationsApiCall();
+        return mApiHelper.getUserRelationsApiCall(mPreferencesHelper.getAccessToken());
+    }
+
+    public Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to) {
+        return mApiHelper.getSensorDataApiCall(mPreferencesHelper.getAccessToken() ,id, from, to);
     }
 
     @Override
-    public Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to) {
-        return mApiHelper.getSensorDataApiCall(id, from, to);
+    public void updateUserInfo(LoggedInMode mode) {
+        setCurrentUserLoggedInMode(mode);
     }
 }

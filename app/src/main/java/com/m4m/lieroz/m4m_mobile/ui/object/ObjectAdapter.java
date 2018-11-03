@@ -60,7 +60,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Context context = itemView.getContext();
-                    Intent intent = new Intent(context, SensorActivity.class);
+                    Intent intent = SensorActivity.getStartIntent(context);
                     intent.putExtra("title", mCardTitleView.getText());
                     intent.putExtra("address", mAddress);
                     intent.putExtra("sensor", (new Gson()).toJson(sensor));

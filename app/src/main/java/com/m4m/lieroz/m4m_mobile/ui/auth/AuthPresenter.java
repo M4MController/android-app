@@ -42,6 +42,7 @@ public class AuthPresenter<V extends AuthMvpView> extends BasePresenter<V> imple
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String response) throws Exception {
+                        getDataManager().updateUserInfo(DataManager.LoggedInMode.LOGGED_IN);
                         getDataManager().setAccessToken(response);
 
                         if (!isViewAttached()) {
