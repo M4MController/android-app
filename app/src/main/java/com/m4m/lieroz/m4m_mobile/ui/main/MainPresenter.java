@@ -53,4 +53,9 @@ public class MainPresenter<V extends MainMvpView> extends BasePresenter<V> imple
                     }
                 }));
     }
+
+    @Override
+    public void logOut() {
+        getDataManager().updateUserInfo(DataManager.LoggedInMode.LOGGED_OUT);
+    }
 }

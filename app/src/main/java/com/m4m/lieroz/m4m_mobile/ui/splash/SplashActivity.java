@@ -1,6 +1,5 @@
 package com.m4m.lieroz.m4m_mobile.ui.splash;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,10 +17,6 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
     @Inject
     SplashMvpPresenter<SplashMvpView> mPresenter;
 
-    public static Intent getStartIntent(Context context) {
-        return new Intent(context, SplashActivity.class);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +29,13 @@ public class SplashActivity extends BaseActivity implements SplashMvpView {
 
     @Override
     public void openAuthActivity() {
-        startActivity(AuthActivity.getStartIntent(SplashActivity.this));
+        startActivity(new Intent(getApplicationContext(), AuthActivity.class));
         finish();
     }
 
     @Override
     public void openMainActivity() {
-        startActivity(MainActivity.getStartIntent(SplashActivity.this));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }
 

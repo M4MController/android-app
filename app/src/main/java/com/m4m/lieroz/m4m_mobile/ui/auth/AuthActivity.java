@@ -1,6 +1,5 @@
 package com.m4m.lieroz.m4m_mobile.ui.auth;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -30,10 +29,6 @@ public class AuthActivity extends BaseActivity implements AuthMvpView {
 
     @BindView(R.id.login_button)
     Button mLoginButton;
-
-    public static Intent getStartIntent(Context context) {
-        return new Intent(context, AuthActivity.class);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

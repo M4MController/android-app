@@ -53,4 +53,9 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
                     }
                 }));
     }
+
+    @Override
+    public void logOut() {
+        getDataManager().updateUserInfo(DataManager.LoggedInMode.LOGGED_OUT);
+    }
 }
