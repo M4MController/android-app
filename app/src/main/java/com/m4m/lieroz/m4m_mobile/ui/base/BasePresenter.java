@@ -60,6 +60,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     @Override
     public void handleApiError(ANError error) {
+        Log.d("ERROR", error.getErrorBody());
         Log.d("ERROR", "Something went wrong! Implement me plz!!!");
     }
 }

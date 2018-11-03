@@ -1,7 +1,5 @@
 package com.m4m.lieroz.m4m_mobile.ui.main;
 
-import android.util.Log;
-
 import com.androidnetworking.error.ANError;
 import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;

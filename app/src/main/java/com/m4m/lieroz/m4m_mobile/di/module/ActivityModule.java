@@ -8,6 +8,9 @@ import com.m4m.lieroz.m4m_mobile.data.network.model.Sensor;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.di.ActivityContext;
 import com.m4m.lieroz.m4m_mobile.di.PerActivity;
+import com.m4m.lieroz.m4m_mobile.ui.auth.AuthMvpPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.auth.AuthMvpView;
+import com.m4m.lieroz.m4m_mobile.ui.auth.AuthPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainAdapter;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.main.MainMvpView;
@@ -58,6 +61,11 @@ public class ActivityModule {
         return new AppSchedulerProvider();
     }
 
+    @Provides
+    @PerActivity
+    AuthMvpPresenter<AuthMvpView> provideAuthPresenter(AuthPresenter<AuthMvpView> presenter) {
+        return presenter;
+    }
 
     @Provides
     @PerActivity

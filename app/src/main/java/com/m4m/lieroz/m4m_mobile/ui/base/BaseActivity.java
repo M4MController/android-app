@@ -1,5 +1,6 @@
 package com.m4m.lieroz.m4m_mobile.ui.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,21 +19,26 @@ import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.di.component.ActivityComponent;
 import com.m4m.lieroz.m4m_mobile.di.component.DaggerActivityComponent;
 import com.m4m.lieroz.m4m_mobile.di.module.ActivityModule;
+import com.m4m.lieroz.m4m_mobile.utils.CommonUtils;
 
 import butterknife.BindView;
 import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements MvpView {
 
+    @Nullable
     @BindView(R.id.toolbar)
     protected Toolbar mToolbar;
 
+    @Nullable
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
 
+    @Nullable
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
+    private ProgressDialog mProgressDialog;
     private ActivityComponent mActivityComponent;
     private Unbinder mUnBinder;
 
@@ -138,5 +144,18 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
         setupNavMenu();
+    }
+
+    @Override
+    public void showLoading() {
+        hideLoading();
+        mProgressDialog = CommonUtils.showLoadingDialog(this);
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }
     }
 }

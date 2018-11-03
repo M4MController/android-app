@@ -7,7 +7,11 @@ import com.m4m.lieroz.m4m_mobile.data.AppDataManager;
 import com.m4m.lieroz.m4m_mobile.data.DataManager;
 import com.m4m.lieroz.m4m_mobile.data.network.ApiHelper;
 import com.m4m.lieroz.m4m_mobile.data.network.AppApiHelper;
+import com.m4m.lieroz.m4m_mobile.data.prefs.AppPreferencesHelper;
+import com.m4m.lieroz.m4m_mobile.data.prefs.PreferencesHelper;
 import com.m4m.lieroz.m4m_mobile.di.ApplicationContext;
+import com.m4m.lieroz.m4m_mobile.di.PreferenceInfo;
+import com.m4m.lieroz.m4m_mobile.utils.AppConstants;
 
 import javax.inject.Singleton;
 
@@ -35,9 +39,21 @@ public class ApplicationModule {
     }
 
     @Provides
+    @PreferenceInfo
+    String providePreferenceName() {
+        return AppConstants.PREF_NAME;
+    }
+
+    @Provides
     @Singleton
     DataManager provideDataManager(AppDataManager appDataManager) {
         return appDataManager;
+    }
+
+    @Provides
+    @Singleton
+    PreferencesHelper providePreferencesHelper(AppPreferencesHelper appPreferencesHelper) {
+        return appPreferencesHelper;
     }
 
     @Provides
