@@ -18,6 +18,7 @@ import com.m4m.lieroz.m4m_mobile.ui.object.ObjectAdapter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.object.ObjectPresenter;
+import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorAdapter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpPresenter;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorMvpView;
 import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorPresenter;
@@ -102,5 +103,10 @@ public class ActivityModule {
     @Provides
     ObjectAdapter provideObjectAdapter() {
         return new ObjectAdapter(new ArrayList<Sensor>());
+    }
+
+    @Provides
+    SensorAdapter provideSensorAdapter() {
+        return new SensorAdapter();
     }
 }

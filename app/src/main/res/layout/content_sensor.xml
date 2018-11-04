@@ -20,7 +20,8 @@
         <com.jjoe64.graphview.GraphView
             android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:layout_margin="8dp" />
 
     </android.support.v7.widget.CardView>
 
@@ -117,5 +118,10 @@
     </android.support.v7.widget.CardView>
 
     <include layout="@layout/card_total" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rules_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

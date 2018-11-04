@@ -1,6 +1,7 @@
 package com.m4m.lieroz.m4m_mobile.ui.sensor;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -75,6 +79,12 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
 
     @BindView(R.id.pay_button)
     Button mPayButton;
+
+    @Inject
+    SensorAdapter mAdapter;
+
+    @BindView(R.id.rules_recycler_view)
+    RecyclerView mRecyclerView;
 
     private Sensor mSensor;
     private LineGraphSeries<DataPoint> mCurrentMonthSeries = new LineGraphSeries<>();
@@ -154,73 +164,63 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
         mExpensesSumView.setText(String.format(Locale.ENGLISH, "%.2f %s", mSensor.getPayments().getCharge(), getResources().getString(R.string.currency_format)));
 
         initGraph();
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void update(List<SensorDataPeriodResponse.Data> data, boolean current) {
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-//        series.setDrawDataPoints(true);
-//        series.setDrawBackground(true);
-
         Calendar calendar = Calendar.getInstance();
         int f = calendar.getActualMinimum(Calendar.DAY_OF_MONTH);
-//        int l = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-//        Date d;
-
         calendar.set(Calendar.DAY_OF_MONTH, f);
-//        Date d;
         DataPoint[] dataPoints = new DataPoint[data.size()];
 
         for (int i = 0; i < dataPoints.length; ++i) {
-            dataPoints[i] = new DataPoint(calendar.getTime(), i);
+            dataPoints[i] = new DataPoint(calendar.getTime(), Math.round(data.get(i).getValue()));
             calendar.add(Calendar.DATE, 1);
         }
 
-//        if (current) {
-//            graph.removeSeries(mCurrentMonthSeries);
-//            mCurrentMonthSeries = series;
-//        } else {
-//            graph.removeSeries(mPrevYearSeries);
-//            mPrevYearSeries = series;
-//        }
-
         graph.removeAllSeries();
-        graph.addSeries(new LineGraphSeries(dataPoints));
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPoints);
+        series.setDrawDataPoints(true);
+
+        if (current) {
+            series.setColor(getResources().getColor(R.color.colorPrimary));
+            series.setDrawBackground(true);
+            mCurrentMonthSeries = series;
+        } else {
+//            series.setColor(getResources().getColor(R.color.colorAccent));
+//            mPrevYearSeries = series;
+        }
+
+        graph.addSeries(mCurrentMonthSeries);
+        graph.addSeries(mPrevYearSeries);
     }
 
     private void initGraph() {
         mPresenter.getSensorData(mSensor.getId(), "2017-09-01T00:00:00", "2017-09-30T00:00:00", false);
-//        mPresenter.getSensorData(mSensor.getId(), "2018-10-01T00:00:00", "2018-10-31T00:00:00", true);
+        mPresenter.getSensorData(mSensor.getId(), "2018-09-01T00:00:00", "2018-09-30T00:00:00", true);
 
         Calendar calendar = Calendar.getInstance();
         int f = calendar.getActualMinimum(Calendar.DAY_OF_MONTH);
-        int l = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
-//        Date d;
+        int l = calendar.getActualMaximum(Calendar.DAY_OF_MONTH) - 1;
 
         calendar.set(Calendar.DAY_OF_MONTH, f);
         Date first = calendar.getTime();
         calendar.set(Calendar.DAY_OF_MONTH, l);
         Date last = calendar.getTime();
 
-//        for (int i = 0; i < l; ++i) {
-//            last = calendar.getTime();
-//            d = calendar.getTime();
-//            series.appendData(new DataPoint(d, getRandom(1000, 5000)), true, l);
-//            calendar.add(Calendar.DATE, 1);
-//        }
-
-        graph.getGridLabelRenderer().setHumanRounding(false);
-        graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
+        graph.getGridLabelRenderer().setNumVerticalLabels(5);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(graph.getContext()));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
+        graph.getGridLabelRenderer().setVerticalLabelsAlign(Paint.Align.LEFT);
+        graph.getGridLabelRenderer().setHorizontalLabelsAngle(150);
+        graph.getGridLabelRenderer().setHumanRounding(true);
 
         graph.getViewport().setMinX(first.getTime());
         graph.getViewport().setMaxX(last.getTime());
         graph.getViewport().setXAxisBoundsManual(true);
-//
-//        graph.getViewport().setMinY(0);
-//        graph.getViewport().setYAxisBoundsManual(true);
     }
 
     void setupNavMenu() {

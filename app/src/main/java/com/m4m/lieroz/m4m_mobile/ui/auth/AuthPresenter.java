@@ -25,12 +25,15 @@ public class AuthPresenter<V extends AuthMvpView> extends BasePresenter<V> imple
     @Override
     public void onLoginClick(String email, String password) {
         if (email == null || email.isEmpty()) {
+            getMvpView().tmpError("Поле Email не может быть пустым!");
             return;
         }
         if (!CommonUtils.isEmailValid(email)) {
+            getMvpView().tmpError("Невалидный адрес почты!");
             return;
         }
         if (password == null || password.isEmpty()) {
+            getMvpView().tmpError("Поле Password не может быть пустым!");
             return;
         }
 
@@ -64,6 +67,7 @@ public class AuthPresenter<V extends AuthMvpView> extends BasePresenter<V> imple
                         if (throwable instanceof ANError) {
                             ANError anError = (ANError) throwable;
                             handleApiError(anError);
+                            getMvpView().tmpError("Невалидные данные!");
                         }
                     }
                 }));

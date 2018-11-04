@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.m4m.lieroz.m4m_mobile.R;
 import com.m4m.lieroz.m4m_mobile.ui.base.BaseActivity;
@@ -64,5 +65,10 @@ public class AuthActivity extends BaseActivity implements AuthMvpView {
     public void openMainActivity() {
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
+    }
+
+    @Override
+    public void tmpError(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 }
