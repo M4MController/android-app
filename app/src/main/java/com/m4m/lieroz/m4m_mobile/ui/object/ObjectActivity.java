@@ -62,7 +62,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     @BindView(R.id.pay_button)
     Button mPayButton;
 
-    private String mAddress;
+    private String mTitle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,9 +104,9 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
         mPresenter.onAttach(this);
 
         Intent intent = getIntent();
-        mToolbar.setTitle(intent.getStringExtra("title"));
-        mAddress = intent.getStringExtra("address");
-        mToolbar.setSubtitle(mAddress);
+        mTitle = intent.getStringExtra("title");
+        mToolbar.setTitle(mTitle);
+        mToolbar.setSubtitle(intent.getStringExtra("address"));
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
@@ -132,7 +132,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
         DateFormat sdf = new SimpleDateFormat("MM/dd/yy", Locale.ENGLISH);
         mExpensesDateView.setText(String.format("%s: %s", getResources().getString(R.string.expenses_on), sdf.format(new Date())));
 
-        mAdapter.setAddress(mAddress);
+        mAdapter.setObjectName(mTitle);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
     }

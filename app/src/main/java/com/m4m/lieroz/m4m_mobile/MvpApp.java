@@ -9,10 +9,15 @@ import com.m4m.lieroz.m4m_mobile.di.module.ApplicationModule;
 
 import javax.inject.Inject;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 public class MvpApp extends Application {
 
     @Inject
     DataManager mDataManager;
+
+    @Inject
+    CalligraphyConfig mCalligraphyConfig;
 
     private ApplicationComponent mApplicationComponent;
 
@@ -22,6 +27,8 @@ public class MvpApp extends Application {
         mApplicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this)).build();
         mApplicationComponent.inject(this);
+
+        CalligraphyConfig.initDefault(mCalligraphyConfig);
     }
 
     public ApplicationComponent getComponent() {

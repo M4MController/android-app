@@ -78,7 +78,7 @@
                         android:gravity="left|start"
                         android:text="Начисление"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/sensor_charge_view"
@@ -87,7 +87,7 @@
                         android:layout_weight="1"
                         android:gravity="right|end"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -102,7 +102,7 @@
                         android:gravity="left|start"
                         android:text="Переплата"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/sensor_overpayment_view"
@@ -111,7 +111,7 @@
                         android:layout_weight="1"
                         android:gravity="right|end"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -126,7 +126,7 @@
                         android:gravity="left|start"
                         android:text="К оплате"
                         android:textColor="@android:color/black"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView

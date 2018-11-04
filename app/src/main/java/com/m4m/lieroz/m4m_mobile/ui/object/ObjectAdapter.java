@@ -62,7 +62,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     Context context = itemView.getContext();
                     Intent intent = new Intent(context, SensorActivity.class);
                     intent.putExtra("title", mCardTitleView.getText());
-                    intent.putExtra("address", mAddress);
+                    intent.putExtra("objectName", mObjectName);
                     intent.putExtra("sensor", (new Gson()).toJson(sensor));
                     context.startActivity(intent);
                 }
@@ -74,7 +74,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         }
     }
 
-    private String mAddress;
+    private String mObjectName;
     private List<Sensor> mUserSensorsResponseList;
 
     public ObjectAdapter(List<Sensor> userSensorsResponseList) {
@@ -85,8 +85,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         mUserSensorsResponseList = userSensorsResponseList;
         notifyDataSetChanged();
     }
-    public void setAddress(String address) {
-        mAddress = address;
+    public void setObjectName(String objectName) {
+        mObjectName = objectName;
     }
 
     @NonNull

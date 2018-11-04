@@ -148,8 +148,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
                         int id = item.getItemId();
 
                         switch (id) {
-                            case R.id.nav_main:
+                            case R.id.nav_main: {
+                                mDrawer.closeDrawer(GravityCompat.START);
                                 return true;
+                            }
                             case R.id.nav_finances:
                                 return true;
                             case R.id.nav_settings:

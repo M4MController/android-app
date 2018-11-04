@@ -119,7 +119,7 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
 
         Intent intent = getIntent();
         mToolbar.setTitle(intent.getStringExtra("title"));
-        mToolbar.setSubtitle(intent.getStringExtra("address"));
+        mToolbar.setSubtitle(intent.getStringExtra("objectName"));
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
