@@ -2,7 +2,7 @@ package com.m4m.lieroz.m4m_mobile.ui.object;
 
 import com.androidnetworking.error.ANError;
 import com.m4m.lieroz.m4m_mobile.data.DataManager;
-import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
+import com.m4m.lieroz.m4m_mobile.data.network.model.ObjectRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.ui.base.BasePresenter;
 import com.m4m.lieroz.m4m_mobile.utils.rx.SchedulerProvider;
 
@@ -21,15 +21,15 @@ public class ObjectPresenter<V extends ObjectMvpView> extends BasePresenter<V> i
     }
 
     @Override
-    public void getUserSensors() {
+    public void getUserSensors(int id) {
         getMvpView().showLoading();
         getCompositeDisposable().add(getDataManager()
-                .getUserRelationsApiCall()
+                .getObjectRelationsApiCall(id)
                 .subscribeOn(getSchedulerProvider().io())
                 .observeOn(getSchedulerProvider().ui())
-                .subscribe(new Consumer<UserRelationsResponse>() {
+                .subscribe(new Consumer<ObjectRelationsResponse>() {
                     @Override
-                    public void accept(UserRelationsResponse response) throws Exception {
+                    public void accept(ObjectRelationsResponse response) throws Exception {
                         if (!isViewAttached()) {
                             return;
                         }

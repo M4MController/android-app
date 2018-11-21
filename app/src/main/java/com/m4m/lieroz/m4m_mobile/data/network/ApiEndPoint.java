@@ -10,6 +10,9 @@ public abstract class ApiEndPoint {
     public static final String ENDPOINT_USER_RELATIONS = BuildConfig.BASE_URL
             + ":5000/v2/user/relations";
 
+    public static final String ENDPOINT_OBJECT_RELATIONS = BuildConfig.BASE_URL
+            + ":5000/v2/object/{id}/relations";
+
     public static final String ENDPOINT_SENSOR_DATA_PERIOD = BuildConfig.BASE_URL
             + ":5000/v2/sensor/{id}/get_data_period";
 }

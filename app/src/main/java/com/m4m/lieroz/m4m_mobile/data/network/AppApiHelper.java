@@ -1,5 +1,6 @@
 package com.m4m.lieroz.m4m_mobile.data.network;
 
+import com.m4m.lieroz.m4m_mobile.data.network.model.ObjectRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.SensorDataPeriodResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
@@ -34,10 +35,19 @@ public class AppApiHelper implements ApiHelper {
     }
 
     @Override
+    public Single<ObjectRelationsResponse> getObjectRelationsApiCall(String token, int id) {
+        return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_OBJECT_RELATIONS)
+                .addPathParameter("id", Integer.toString(id))
+                .addQueryParameter("token", token)
+                .build()
+                .getObjectSingle(ObjectRelationsResponse.class);
+    }
+
+    @Override
     public Single<SensorDataPeriodResponse> getSensorDataApiCall(String token, int id, String from, String to) {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_SENSOR_DATA_PERIOD)
-                .addQueryParameter("token", token)
                 .addPathParameter("id", Integer.toString(id))
+                .addQueryParameter("token", token)
                 .addQueryParameter("from", from)
                 .addQueryParameter("to", to)
                 .build()

@@ -44,6 +44,8 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.object_year_avg_view)
         TextView mYearAvgView;
 
+        public int mId;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
@@ -55,6 +57,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                     Intent intent = new Intent(context, ObjectActivity.class);
                     intent.putExtra("title", mCardTitleView.getText());
                     intent.putExtra("address", mStreetTitleView.getText());
+                    intent.putExtra("id", mId);
                     context.startActivity(intent);
                 }
             });
@@ -87,6 +90,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         ViewHolder viewHolder = (ViewHolder) holder;
         Context context = holder.itemView.getContext();
         Object object = mUserObjectsResponseList.get(position);
+        viewHolder.mId = object.getId();
 
         viewHolder.mCardTitleView.setText(object.getName());
         viewHolder.mStreetTitleView.setText(object.getAddress());

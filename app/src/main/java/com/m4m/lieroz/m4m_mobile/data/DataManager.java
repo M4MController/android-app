@@ -1,5 +1,6 @@
 package com.m4m.lieroz.m4m_mobile.data;
 
+import com.m4m.lieroz.m4m_mobile.data.network.model.ObjectRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.SensorDataPeriodResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 
@@ -18,6 +19,8 @@ public interface DataManager {
     Single<String> doUserLoginApiCall(String email, String password);
 
     Single<UserRelationsResponse> getUserRelationsApiCall();
+
+    Single<ObjectRelationsResponse> getObjectRelationsApiCall(int id);
 
     Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to);
 

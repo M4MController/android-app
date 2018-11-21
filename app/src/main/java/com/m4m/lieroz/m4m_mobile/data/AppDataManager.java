@@ -3,6 +3,7 @@ package com.m4m.lieroz.m4m_mobile.data;
 import android.content.Context;
 
 import com.m4m.lieroz.m4m_mobile.data.network.ApiHelper;
+import com.m4m.lieroz.m4m_mobile.data.network.model.ObjectRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.SensorDataPeriodResponse;
 import com.m4m.lieroz.m4m_mobile.data.network.model.UserRelationsResponse;
 import com.m4m.lieroz.m4m_mobile.data.prefs.PreferencesHelper;
@@ -49,6 +50,10 @@ public class AppDataManager implements DataManager {
 
     public Single<UserRelationsResponse> getUserRelationsApiCall() {
         return mApiHelper.getUserRelationsApiCall(mPreferencesHelper.getAccessToken());
+    }
+
+    public Single<ObjectRelationsResponse> getObjectRelationsApiCall(int id) {
+        return mApiHelper.getObjectRelationsApiCall(mPreferencesHelper.getAccessToken(), id);
     }
 
     public Single<SensorDataPeriodResponse> getSensorDataApiCall(int id, String from, String to) {

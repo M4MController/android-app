@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
     Button mPayButton;
 
     private String mTitle;
+    private int mId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
         setUnBinder(ButterKnife.bind(this));
         setUp();
 
-        mPresenter.getUserSensors();
+        mPresenter.getUserSensors(mId);
     }
 
     @Override
@@ -107,6 +109,7 @@ public class ObjectActivity extends BaseActivity implements ObjectMvpView {
         mTitle = intent.getStringExtra("title");
         mToolbar.setTitle(mTitle);
         mToolbar.setSubtitle(intent.getStringExtra("address"));
+        mId = intent.getIntExtra("id", -1);
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
