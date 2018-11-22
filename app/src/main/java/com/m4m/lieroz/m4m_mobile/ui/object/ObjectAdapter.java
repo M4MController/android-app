@@ -8,6 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -50,6 +53,12 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         @BindView(R.id.sensor_year_avg_view)
         TextView mYearAvgView;
 
+        @BindView(R.id.sensor_switch)
+        Switch mSwitch;
+
+        @BindView(R.id.sensor_icon)
+        ImageView mIcon;
+
         Sensor sensor;
 
         public ViewHolder(final View itemView) {
@@ -85,6 +94,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         mUserSensorsResponseList = userSensorsResponseList;
         notifyDataSetChanged();
     }
+
     public void setObjectName(String objectName) {
         mObjectName = objectName;
     }
@@ -97,17 +107,48 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
-        ViewHolder viewHolder = (ViewHolder) holder;
+        final ViewHolder viewHolder = (ViewHolder) holder;
         Context context = holder.itemView.getContext();
         Sensor sensor = mUserSensorsResponseList.get(position);
 
+        viewHolder.mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    viewHolder.mCardView.setEnabled(true);
+                    viewHolder.mCardView.setAlpha(1.0f);
+                } else {
+                    viewHolder.mCardView.setEnabled(false);
+                    viewHolder.mCardView.setAlpha(0.5f);
+                }
+            }
+        });
+
+        switch (sensor.getCharacteristics().getSensorType()) {
+            case 1:
+                viewHolder.mIcon.setImageResource(R.drawable.ic_electricity);
+                break;
+            case 2:
+                viewHolder.mIcon.setImageResource(R.drawable.ic_water);
+                break;
+            case 3:
+                viewHolder.mIcon.setImageResource(R.drawable.ic_hot_water);
+                break;
+            case 4:
+                viewHolder.mIcon.setImageResource(R.drawable.ic_gas);
+                break;
+            default:
+                viewHolder.mIcon.setImageResource(R.drawable.ic_menu_share);
+                break;
+        }
+
         viewHolder.mCardTitleView.setText(sensor.getName());
-        viewHolder.mChargeView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getCharge(), context.getResources().getString(R.string.currency_format)));
-        viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getOverpayment(), context.getResources().getString(R.string.currency_format)));
-        viewHolder.mTotalView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getPayments().getForPayment(), context.getResources().getString(R.string.currency_format)));
-        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
-        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getPrevMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
-        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH ,"%.2f %s", sensor.getStats().getPrevYear(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.mChargeView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getPayments().getCharge(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mOverpaymentView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getPayments().getOverpayment(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mTotalView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getPayments().getForPayment(), context.getResources().getString(R.string.currency_format)));
+        viewHolder.mCurrentMonthView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getStats().getMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.mPrevYearView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getStats().getPrevMonth(), sensor.getCharacteristics().getUnitOfMeasurement()));
+        viewHolder.mYearAvgView.setText(String.format(Locale.ENGLISH, "%.2f %s", sensor.getStats().getPrevYear(), sensor.getCharacteristics().getUnitOfMeasurement()));
         viewHolder.sensor = sensor;
         holder.onBind(position);
     }
