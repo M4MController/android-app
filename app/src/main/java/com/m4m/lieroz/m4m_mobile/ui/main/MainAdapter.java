@@ -21,6 +21,7 @@ import com.m4m.lieroz.m4m_mobile.ui.object.ObjectActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -120,7 +121,7 @@ public class MainAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         WindowManager windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
-        windowManager.getDefaultDisplay().getSize(size);
+        Objects.requireNonNull(windowManager).getDefaultDisplay().getSize(size);
         int width = size.x;
         double single = width / max;
 

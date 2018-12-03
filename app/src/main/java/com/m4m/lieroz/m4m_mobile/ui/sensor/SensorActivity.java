@@ -80,12 +80,6 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
     @BindView(R.id.pay_button)
     Button mPayButton;
 
-    @Inject
-    SensorAdapter mAdapter;
-
-    @BindView(R.id.rules_recycler_view)
-    RecyclerView mRecyclerView;
-
     private Sensor mSensor;
     private LineGraphSeries<DataPoint> mCurrentMonthSeries = new LineGraphSeries<>();
     private LineGraphSeries<DataPoint> mPrevYearSeries = new LineGraphSeries<>();
@@ -164,9 +158,6 @@ public class SensorActivity extends BaseActivity implements SensorMvpView {
         mExpensesSumView.setText(String.format(Locale.ENGLISH, "%.2f %s", mSensor.getPayments().getCharge(), getResources().getString(R.string.currency_format)));
 
         initGraph();
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

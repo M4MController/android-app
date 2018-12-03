@@ -8,6 +8,7 @@
     <android.support.v7.widget.CardView
         android:id="@+id/object_card"
         style="@style/CardStyle"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +131,7 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:gravity="left|start"
-                            android:text="Сентябрь 2017"
+                            android:text="Декабрь 2017"
                             android:textColor="@android:color/black"
                             android:textSize="16sp" />
 

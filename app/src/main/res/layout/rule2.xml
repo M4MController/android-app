@@ -41,7 +41,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Текущее значение (кВт)"
+                        android:text="Напряжение (V)"
                         android:textColor="@android:color/black"
                         android:textSize="12sp" />
 
@@ -69,7 +69,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="раз в неделю"
+                android:text="раз в день"
                 android:textSize="8sp" />
         </LinearLayout>
 

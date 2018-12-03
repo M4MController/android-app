@@ -26,6 +26,7 @@ import com.m4m.lieroz.m4m_mobile.ui.sensor.SensorActivity;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -170,9 +171,9 @@ public class ObjectAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         double yearAvg = sensor.getStats().getPrevYear();
         double max = Math.max(Math.max(currMonth, prevYear), yearAvg);
 
-        WindowManager windowManager = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
-        windowManager.getDefaultDisplay().getSize(size);
+        Objects.requireNonNull(windowManager).getDefaultDisplay().getSize(size);
         int width = size.x;
         double single = width / max;
 
