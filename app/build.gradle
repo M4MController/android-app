@@ -13,12 +13,14 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"http://142.93.108.222\"")
+            buildConfigField("String", "BASE_AUTH_URL", "\"https://auth.meter4.me\"")
+            buildConfigField("String", "BASE_API_URL", "\"https://api.meter4.me\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"http://142.93.108.222\"")
+            buildConfigField("String", "BASE_AUTH_URL", "\"https://auth.meter4.me\"")
+            buildConfigField("String", "BASE_API_URL", "\"https://api.meter4.me\"")
         }
     }
 }
